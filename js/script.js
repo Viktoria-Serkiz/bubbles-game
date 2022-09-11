@@ -30,7 +30,6 @@ function randomNumber(min, max) {
 }
 function removeTargetEvent(event) {
   event.target.remove();
-  // event.stopPropagation();
 }
 
 function createBubble(e) {
