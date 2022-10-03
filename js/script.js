@@ -3,7 +3,8 @@
 const button = document.querySelector(".create__button"),
   screen = document.createElement("div"),
   input = document.createElement("input"),
-  bubble = document.createElement("p");
+  bubble = document.createElement("p"),
+  documentBody = document.body;
 let width = 20;
 let height = 20;
 screen.classList.add("container");
@@ -24,12 +25,8 @@ function createInput() {
 }
 button.addEventListener("click", createInput);
 
-
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
-}
-function removeTargetEvent(event) {
-  event.target.remove();
 }
 
 function createBubble(e) {
@@ -43,10 +40,7 @@ function createBubble(e) {
     newBubble.style.left = `${randomNumber(10,screen.clientWidth - (width + 10))}px`;
     
     screen.append(newBubble);
-
-  newBubble.addEventListener("click", removeTargetEvent);
-}
-
+};
 
 button.addEventListener("click", (e) => {
   button.insertAdjacentElement("afterend", screen);
@@ -57,3 +51,8 @@ button.addEventListener("click", (e) => {
   });
 });
 
+documentBody.addEventListener("click", (event) => {
+  if (event.target.className.includes("bubble")) {
+    event.target.remove();
+  }
+});
